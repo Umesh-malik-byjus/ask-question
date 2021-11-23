@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Container, CardText, Button, Input } from 'reactstrap';
+
+import { styles } from './styles/CardBodyStyles';
 import Answer from './Answer';
 
 const CardBody = () => {
@@ -15,12 +17,6 @@ const CardBody = () => {
     useEffect(() => {
         getQuestion();
     }, [])
-
-    window.addEventListener('keydown', (e) => {
-        if (e.keyCode === 13) {
-            isButtonClicked ? getQuestion() : evaluateAnswer()
-        }
-    })
 
     const getQuestion = async () => {
         const url = 'https://jservice.io/api/random'
@@ -42,39 +38,6 @@ const CardBody = () => {
         setIsButtonClicked(true);
         setShowAnswer(true);
         setUserAnswer('');
-    }
-
-    const styles= {
-        container: {
-            display: 'flex',
-            placeContent: 'center',
-            flexDirection: 'column' as 'column'
-        },
-        question: {
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            margin: '2rem 1rem 1rem 1rem',
-            overflow:"auto", 
-            height:"100%" ,
-            width:"100%",
-            textAlign: 'center' as 'center',
-        },
-        btn: {
-            fontSize: '1.2rem',
-            border: 'none',
-            borderRadius: '5px',
-            padding: '0.5rem',
-            margin: '1rem',
-            alignSelf: 'center',
-        },
-        input: {
-            fontSize: '1.2rem',
-            border: 'none',
-            borderRadius: '5px',
-            padding: '0.5rem',
-            margin: '1rem',
-            alignSelf: 'center'
-        },
     }
 
     return (
